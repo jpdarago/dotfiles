@@ -37,6 +37,14 @@ bindkey "^[[1;5D" backward-word
 
 alias ls='ls --color'
 
+if [ -d "/usr/local/go/bin" ]; then
+    export PATH="$PATH:/usr/local/go/bin"
+fi
+
+if [ -d "$HOME/go/bin" ]; then
+    export PATH="$PATH:$HOME/go/bin"
+fi
+
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
