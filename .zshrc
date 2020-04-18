@@ -1,5 +1,5 @@
 # History options
-HISTFILE="$HOME/..zhistory"
+HISTFILE="$HOME/.zhistory"
 HISTSIZE=1000000000
 SAVEHIST=1000000000
 
@@ -31,6 +31,8 @@ export PAGER='less'
 
 FZF_COMPLETION_TRIGGER=
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
+
+export PATH="$PATH:$HOME/bin"
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
