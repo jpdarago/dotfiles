@@ -15,6 +15,7 @@ Plug 'esneider/vim-trailing'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'kana/vim-operator-user'
 Plug 'leafgarland/typescript-vim'
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'mileszs/ack.vim'
@@ -29,6 +30,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-syntastic/syntastic'
+Plug 'xavierd/clang_complete'
 call plug#end()
 
 " Configuration
@@ -121,10 +123,8 @@ autocmd BufReadPost *
 """ FZF
 if executable("rg")
     set grepprg=rg
-    let $FZF_DEFAULT_COMMAND='rg -g ""'
     let g:ackprg = 'rg --vimgrep'
 endif
-let $FZF_DEFAULT_COMMAND='rg -g ""'
 let g:fzf_layout = { 'down': '~10%' }
 nmap <leader>s :Buffers<CR>
 nmap <leader>f :Files<CR>
@@ -140,15 +140,16 @@ let g:ragel_default_subtype = "cpp"
 
 """ ClangFormat
 autocmd FileType c,cpp,objc ClangFormatAutoEnable
-
+let g:clang_format#command = "/usr/bin/clang-format-8"
 let g:clang_format#style_options = {
             \ "IndentWidth" : 2,
             \ "AllowShortIfStatementsOnASingleLine" : "true",
             \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "Standard" : "C++17"}
+            \ "Standard" : "C++11"}
 
 "" Typescript
 autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+
 "" Neomake
 call neomake#configure#automake('rw', 1000)
 let g:neomake_cpp_enabled_makers = ['clang']
@@ -161,6 +162,9 @@ let g:neomake_typescript_enabled_makers = ['tslint']
 """ Deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
+
+"" clang_complete
+let g:clang_library_path='/usr/lib/llvm-3.8/lib'
 
 """ Terminal mode
 tnoremap <Esc> <C-\><C-n>
