@@ -32,20 +32,25 @@ export PAGER='less'
 FZF_COMPLETION_TRIGGER=
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
-export PATH="$PATH:$HOME/bin"
+ZSH_HIGHLIGHT_MAXLENGTH=1024
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
 alias ls='ls --color'
 
+path+=("$HOME/bin")
 if [ -d "/usr/local/go/bin" ]; then
-    export PATH="$PATH:/usr/local/go/bin"
+    path+='/usr/local/go/bin'
 fi
 
 if [ -d "$HOME/go/bin" ]; then
-    export PATH="$PATH:$HOME/go/bin"
+    path+="$HOME/go/bin"
 fi
+
+export PATH
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
