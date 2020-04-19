@@ -151,7 +151,6 @@ let g:syntastic_cpp_checkers = ['clang_tidy']
 let g:ragel_default_subtype = "cpp"
 
 """ ClangFormat
-autocmd FileType c,cpp,objc ClangFormatAutoEnable
 let g:clang_format#command = "/usr/bin/clang-format-8"
 let g:clang_format#style_options = {
             \ "IndentWidth" : 2,
