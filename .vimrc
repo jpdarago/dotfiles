@@ -20,9 +20,10 @@ Plug 'kana/vim-operator-user'
 Plug 'leafgarland/typescript-vim'
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'mileszs/ack.vim'
-Plug 'msteinert/vim-ragel'
 Plug 'nanotech/jellybeans.vim'
 Plug 'neomake/neomake'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
 Plug 'rhysd/vim-clang-format'
 Plug 'rust-lang/rust.vim'
 Plug 'sbdchd/neoformat'
@@ -31,7 +32,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-syntastic/syntastic'
-Plug 'xavierd/clang_complete'
 call plug#end()
 
 " Configuration
@@ -88,6 +88,11 @@ set wildignore=.svn,.git,*.o,*~,*.swp,*.pyc,*.class,*.dSYM
 "" Search lowercase words, except if the search has uppercase letters.
 set ignorecase smartcase
 
+"" Show incremental edits (NeoVim only)
+if has('nvim')
+    set inccommand=nosplit
+end
+
 "" Backups
 if exists("&backupdir")
     let backupdir = expand($HOME . "/.vim/backup")
@@ -111,6 +116,11 @@ if has('persistent_undo')
     set undoreload=10000
 endif
 
+"" Commands and macros
+
+""" Copy current filename.
+nnoremap <C-f> :let @* = expand("%")<CR>
+
 "" Autocommands
 
 """ Restore cursor position on reopening a file.
@@ -119,7 +129,7 @@ autocmd BufReadPost *
   \   exe "normal! g`\"" |
   \ endif
 
-"" Command configuration
+"" Plugin configuration
 
 """ FZF
 if executable("rg")
@@ -127,7 +137,8 @@ if executable("rg")
     let g:ackprg = 'rg --vimgrep'
 endif
 let g:fzf_layout = { 'down': '~10%' }
-nmap <leader>s :Buffers<CR>
+
+nmap ; :Buffers<CR>
 nmap <leader>f :Files<CR>
 nmap <leader>l :Lines<CR>
 
@@ -146,9 +157,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_clang_tidy_post_args = ""
 let g:syntastic_cpp_checkers = ['clang_tidy']
-
-""" vim-ragel
-let g:ragel_default_subtype = "cpp"
 
 """ ClangFormat
 let g:clang_format#command = "/usr/bin/clang-format-8"
@@ -173,12 +181,6 @@ let g:neomake_typescript_enabled_makers = ['tslint']
 """ Deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
-
-"" clang_complete
-let g:clang_library_path='/usr/lib/llvm-3.8/lib'
-
-""" Terminal mode
-tnoremap <Esc> <C-\><C-n>
 
 """ Turn on plugins.
 filetype plugin indent on
