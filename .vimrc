@@ -166,7 +166,7 @@ end
 
 """ ClangFormat
 if has_key(plugs, 'vim-clang-format')
-    let g:clang_format#command = "/usr/bin/clang-format-8"
+    let g:clang_format#command = "clang-format"
     let g:clang_format#style_options = {
                 \ "IndentWidth" : 2,
                 \ "AllowShortIfStatementsOnASingleLine" : "true",
