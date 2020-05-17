@@ -40,6 +40,7 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
 alias ls='ls --color'
+alias vim="nvim"
 
 path+=("$HOME/bin")
 if [ -d "/usr/local/go/bin" ]; then
@@ -50,7 +51,11 @@ if [ -d "$HOME/go/bin" ]; then
     path+="$HOME/go/bin"
 fi
 
-export PATH
+HOSTNAME="$(hostname)"
+if [ "$HOSTNAME" = "dorothy" ]; then
+    path +=(/home/jpdarago/bin /sbin)
+    export DOCKER_HOST='unix:///run/user/1000/docker.sock'
+fi
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
