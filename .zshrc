@@ -51,7 +51,7 @@ if [ -d "$HOME/go/bin" ]; then
     path+="$HOME/go/bin"
 fi
 
-HOSTNAME="$(hostname)"
+export HOSTNAME="$(hostname)"
 if [ "$HOSTNAME" = "dorothy" ]; then
     path +=(/home/jpdarago/bin /sbin)
     export DOCKER_HOST='unix:///run/user/1000/docker.sock'
