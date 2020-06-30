@@ -44,16 +44,16 @@ alias vim="nvim"
 
 path+=("$HOME/bin")
 if [ -d "/usr/local/go/bin" ]; then
-    path+='/usr/local/go/bin'
+    path+=('/usr/local/go/bin')
 fi
 
 if [ -d "$HOME/go/bin" ]; then
-    path+="$HOME/go/bin"
+    path+=("$HOME/go/bin")
 fi
 
 export HOSTNAME="$(hostname)"
 if [ "$HOSTNAME" = "dorothy" ]; then
-    path +=('/home/jpdarago/bin' '/sbin')
+    path+=('/home/jpdarago/bin' '/sbin')
     export DOCKER_HOST='unix:///run/user/1000/docker.sock'
 fi
 
