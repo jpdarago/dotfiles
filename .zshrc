@@ -112,6 +112,6 @@ alias vim="nvim"
 # Setup docker to run local client on Dorothy (because Docker has no sudo there).
 export HOSTNAME="$(hostname)"
 if [ "$HOSTNAME" = "dorothy" ]; then
-    path +=('/home/jpdarago/bin' '/sbin')
+    path+=('/home/jpdarago/bin' '/sbin')
     export DOCKER_HOST='unix:///run/user/1000/docker.sock'
 fi
