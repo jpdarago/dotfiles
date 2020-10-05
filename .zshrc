@@ -63,7 +63,12 @@ export PAGER='less'
 export GPG_TTY=$TTY
 
 # Extend PATH.
-path=(~/bin $path)
+if [[ -f "~/bin" ]]; then
+    path+=(~/bin)
+fi
+if [[ -f "~/nodejs/bin" ]]; then
+    path+=(~/nodejs/bin)
+fi
 
 # Define key bindings.
 bindkey -M emacs '^H' backward-kill-word # Ctrl-H and Ctrl-Backspace: Delete previous word.
