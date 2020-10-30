@@ -47,13 +47,6 @@ if (( UID && UID == EUID && ! Z4H_SSH )); then
   z4h chsh
 fi
 
-# Clone additional Git repositories from GitHub. This doesn't do anything
-# apart from cloning the repository and keeping it up-to-date. Cloned
-# files can be used after `z4h init`.
-#
-# This is just an example. If you don't plan to use Oh My Zsh, delete this.
-z4h install ohmyzsh/ohmyzsh || return
-
 # Install or update core components (fzf, zsh-autosuggestions, etc.) and
 # initialize Zsh. After this point console I/O is unavailable. Everything
 # that requires user interaction or can perform network I/O must be done
@@ -70,7 +63,12 @@ export PAGER='less'
 export GPG_TTY=$TTY
 
 # Extend PATH.
-path=(~/bin $path)
+if [[ -f "~/bin" ]]; then
+    path+=(~/bin)
+fi
+if [[ -f "~/nodejs/bin" ]]; then
+    path+=(~/nodejs/bin)
+fi
 
 # Define key bindings.
 bindkey -M emacs '^H' backward-kill-word # Ctrl-H and Ctrl-Backspace: Delete previous word.
