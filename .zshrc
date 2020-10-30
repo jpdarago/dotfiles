@@ -108,3 +108,5 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden'
 alias vim="nvim"
 
 alias bw="/home/jpdarago/nodejs/bin/bw"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

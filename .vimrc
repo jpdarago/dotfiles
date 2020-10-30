@@ -15,28 +15,28 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Quramy/tsuquyomi'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'SirVer/ultisnips'
-Plug 'billyvg/tigris.nvim', { 'do': './install.sh' }
 Plug 'dense-analysis/ale'
 Plug 'esneider/vim-trailing'
-Plug 'fatih/vim-go'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'kana/vim-operator-user'
-Plug 'leafgarland/typescript-vim'
-Plug 'lighttiger2505/deoplete-vim-lsp'
+Plug 'machakann/vim-highlightedyank'
+Plug 'mattn/vim-lsp-settings'
+Plug 'mcchrish/nnn.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'neovim/node-host', { 'do': 'npm install' }
 Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'rhysd/vim-clang-format'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tweekmonster/startuptime.vim'
 call plug#end()
 
 " Configuration
