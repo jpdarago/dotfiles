@@ -37,6 +37,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tweekmonster/startuptime.vim'
+Plug 'z0mbix/vim-shfmt'
 call plug#end()
 
 " Configuration
@@ -166,7 +167,7 @@ if has_key(plugs, 'vim-clang-format')
                 \ "Standard" : "C++11"}
 end
 
-""" Clangd
+""" vim-lsp
 if executable('clangd') && has_key(plugs, 'vim-lsp')
     augroup lsp_clangd
         autocmd!
@@ -180,15 +181,31 @@ if executable('clangd') && has_key(plugs, 'vim-lsp')
     augroup end
 end
 
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
 "" Typescript
 if executable('prettier')
     autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
-end
-
-""" Deoplete
-if has_key(plugs, 'deoplete.nvim')
-    let g:deoplete#enable_at_startup = 1
-    call deoplete#custom#option({'enable_smart_case': 1})
 end
 
 """ Turn on plugins.
