@@ -4,7 +4,7 @@ set -x
 
 # Install dependencies
 sudo apt update
-sudo apt install git curl wget build-essentials python3 lua5.3 snapd tmux
+sudo apt install git curl wget build-essential python3 lua5.3 snapd tmux
 
 # Install NeoVim
 curl -fLo ~/bin/nvim --create-dirs \
