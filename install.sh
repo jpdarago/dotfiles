@@ -4,7 +4,7 @@ set -x
 
 # Install dependencies
 sudo apt update
-sudo apt install git curl wget build-essential python3 lua5.3 snapd tmux fuse
+sudo apt install git curl wget build-essential python3 lua5.3 snapd tmux fuse libfuse2 python3-pip ripgrep
 
 # Install NeoVim
 if command -v vim &> /dev/null; then
@@ -15,7 +15,7 @@ curl -fLo ~/bin/nvim --create-dirs \
 chmod u+x ~/bin/nvim
 
 # Install VimPlug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install NodeJS
