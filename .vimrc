@@ -84,6 +84,9 @@ set autoindent smartindent
 set cino+=(0
 "" Set clipboard
 set clipboard+=unnamedplus
+" suppress the annoying 'match x of y',
+" 'The only match' and 'Pattern not found' messages
+set shortmess+=c
 
 "" Completion and search
 "" Interpret regular expression characters on searches.
