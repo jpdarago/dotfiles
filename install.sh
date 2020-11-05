@@ -7,7 +7,9 @@ sudo apt update
 sudo apt install git curl wget build-essential python3 lua5.3 snapd tmux fuse
 
 # Install NeoVim
-sudo apt-get remove --auto-remove vim￼vim-runtime vim-tiny
+if command -v vim &> /dev/null; then
+    sudo apt-get remove --auto-remove vim￼vim-runtime vim-tiny
+fi
 curl -fLo ~/bin/nvim --create-dirs \
 	https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage
 chmod u+x ~/bin/nvim
@@ -24,7 +26,7 @@ echo "deb https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee /etc/apt/
 echo "deb-src https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
 sudo apt-get update && sudo apt install -y nodejs
 
-npm install -g prettier
+sudo npm install -g prettier
 
 # Snap and shfmt
 sudo snap install core
