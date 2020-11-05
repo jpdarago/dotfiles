@@ -10,7 +10,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-
 "" Vim Plug and plugins
 call plug#begin('~/.vim/plugged')
 Plug 'Lokaltog/vim-easymotion'

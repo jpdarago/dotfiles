@@ -36,6 +36,7 @@ sudo snap install shfmt
 ln -fs "$(realpath .tmux.conf)" "$HOME/.tmux.conf"
 ln -fs "$(realpath .vimrc)" "$HOME/.vimrc"
 ln -fs "$(realpath .zshrc)" "$HOME/.zshrc"
+ln -s ~/.vimrc ~/.config/nvim/init.vim
 
 nvim +PlugInstall
 
