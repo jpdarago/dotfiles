@@ -37,7 +37,7 @@ ln -fs "$(realpath .tmux.conf)" "$HOME/.tmux.conf"
 ln -fs "$(realpath .vimrc)" "$HOME/.vimrc"
 ln -fs "$(realpath .zshrc)" "$HOME/.zshrc"
 
-vim +PlugInstall
+nvim +PlugInstall
 
 # Install latest ZSH
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh-bin/master/install)"
