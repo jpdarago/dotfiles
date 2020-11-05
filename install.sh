@@ -4,12 +4,15 @@ set -x
 
 # Install dependencies
 sudo apt update
-sudo apt install git curl wget build-essentials python3 snapd
+sudo apt install git curl wget build-essentials python3 lua snapd tmux
 
 # Install NeoVim
 curl -fLo ~/bin/nvim --create-dirs \
 	https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage
 chmod u+x ~/bin/nvim
+
+# Install latest ZSH
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh-bin/master/install)"
 
 # Install Z4H
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v2/install)"
@@ -29,7 +32,7 @@ sudo apt-get update && sudo apt install -y nodejs
 npm install -g prettier
 
 # Snap and shfmt
-sudo snap insatll core
+sudo snap install core
 sudo snap install shfmt
 
 # Set up files
