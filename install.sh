@@ -4,18 +4,13 @@ set -x
 
 # Install dependencies
 sudo apt update
-sudo apt install git curl wget build-essential python3 lua5.3 snapd tmux
+sudo apt install git curl wget build-essential python3 lua5.3 snapd tmux fuse
 
 # Install NeoVim
+sudo apt-get remove --auto-remove vim￼vim-runtime vim-tiny
 curl -fLo ~/bin/nvim --create-dirs \
 	https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage
 chmod u+x ~/bin/nvim
-
-# Install latest ZSH
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh-bin/master/install)"
-
-# Install Z4H
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v2/install)"
 
 # Install VimPlug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -41,3 +36,9 @@ ln -fs "$(realpath .vimrc)" "$HOME/.vimrc"
 ln -fs "$(realpath .zshrc)" "$HOME/.zshrc"
 
 vim +PlugInstall
+
+# Install latest ZSH
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh-bin/master/install)"
+
+# Install Z4H
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v2/install)"
