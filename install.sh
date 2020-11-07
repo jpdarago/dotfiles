@@ -38,6 +38,8 @@ ln -fs "$(realpath .vimrc)" "$HOME/.vimrc"
 ln -fs "$(realpath .zshrc)" "$HOME/.zshrc"
 mkdir -p ~/.config/nvim && ln -s ~/.vimrc ~/.config/nvim/init.vim
 
+# Set up NeoVim
+sudo pip3 install neovim
 nvim +PlugInstall
 
 # Install latest ZSH
