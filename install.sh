@@ -26,11 +26,17 @@ echo "deb https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee /etc/apt/
 echo "deb-src https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
 sudo apt-get update && sudo apt install -y nodejs
 
-sudo npm install -g prettier
+# Install some NodeJS
+sudo npm install -g prettier typescript
+
+# Install latest ZSH
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh-bin/master/install)"
 
 # Snap and shfmt
-sudo snap install core
-sudo snap install shfmt
+sudo snap install core shfmt
+
+# Set up NeoVim
+sudo pip3 install neovim
 
 # Set up files
 ln -fs "$(realpath .tmux.conf)" "$HOME/.tmux.conf"
@@ -38,12 +44,5 @@ ln -fs "$(realpath .vimrc)" "$HOME/.vimrc"
 ln -fs "$(realpath .zshrc)" "$HOME/.zshrc"
 mkdir -p ~/.config/nvim && ln -s ~/.vimrc ~/.config/nvim/init.vim
 
-# Set up NeoVim
-sudo pip3 install neovim
+# Install NeoVim plugins
 nvim +PlugInstall
-
-# Install latest ZSH
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh-bin/master/install)"
-
-# Install Z4H
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v2/install)"

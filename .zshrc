@@ -105,8 +105,6 @@ SAVEHIST=1000000000
 # FZF options
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
-alias vim="nvim"
-
+# Editor setup
+alias vim="~/bin/nvim.appimage"
 alias bw="/home/jpdarago/nodejs/bin/bw"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
