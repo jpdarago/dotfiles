@@ -30,6 +30,7 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'rhysd/vim-clang-format'
+Plug 'rust-lang/rust.vim'
 Plug 'ryanolsonx/vim-lsp-typescript'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-repeat'
@@ -209,6 +210,15 @@ augroup END
 if executable('prettier')
     autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
 end
+
+"" Rust
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+        \ 'whitelist': ['rust'],
+        \ })
+endif
 
 """ Turn on plugins.
 filetype plugin indent on

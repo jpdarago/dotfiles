@@ -59,6 +59,7 @@ bindkey -e
 # Export environment variables.
 export TERMINAL='sakura'
 export EDITOR='vim'
+export SUDO_EDITOR='vim'
 export PAGER='less'
 export GPG_TTY=$TTY
 
@@ -68,6 +69,9 @@ if [[ -f "~/bin" ]]; then
 fi
 if [[ -f "~/nodejs/bin" ]]; then
     path+=(~/nodejs/bin)
+fi
+if [[ -f "~/.rustup/" ]]; then
+    source "~/.cargo/env"
 fi
 
 # Define key bindings.
@@ -104,7 +108,3 @@ SAVEHIST=1000000000
 
 # FZF options
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
-
-# Editor setup
-alias vim="~/bin/nvim.appimage"
-alias bw="/home/jpdarago/nodejs/bin/bw"
