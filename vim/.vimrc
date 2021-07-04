@@ -14,10 +14,12 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug '907th/vim-auto-save'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'SirVer/ultisnips'
+Plug 'Olical/conjure', { 'tag': 'v4.3.1' }
 Plug 'chaoren/vim-wordmotion'
 Plug 'esneider/vim-trailing'
+Plug 'guns/vim-sexp'
 Plug 'honza/vim-snippets'
+Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/vim-better-default'
@@ -32,6 +34,7 @@ Plug 'rhysd/vim-clang-format'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'wellle/targets.vim'
