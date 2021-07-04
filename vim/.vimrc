@@ -16,7 +16,6 @@ Plug '907th/vim-auto-save'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'SirVer/ultisnips'
 Plug 'chaoren/vim-wordmotion'
-Plug 'dense-analysis/ale'
 Plug 'esneider/vim-trailing'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -28,6 +27,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'neoclide/coc-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'prabirshrestha/async.vim'
+Plug 'rhysd/vim-clang-format'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-repeat'
@@ -82,9 +82,12 @@ set autoindent smartindent
 set cino+=(0
 "" Set clipboard
 set clipboard+=unnamedplus
-" suppress the annoying 'match x of y',
-" 'The only match' and 'Pattern not found' messages
+"" suppress the annoying 'match x of y',
+"" 'The only match' and 'Pattern not found' messages
 set shortmess+=c
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
 
 "" Completion and search
 "" Interpret regular expression characters on searches.
@@ -137,6 +140,45 @@ autocmd BufReadPost *
 
 "" Plugin configuration
 
+""" coc.nvim
+
+"" Use tab for trigger completion with characters ahead and navigate.
+"" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+"" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <C-j> for trigger snippet expand.
+imap <C-j> <Plug>(coc-snippets-expand)
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gy <Plug>(coc-type-definition)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
+nmap <silent> <leader>gr <Plug>(coc-references)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
 """ FZF
 if has_key(plugs, 'fzf') && has_key(plugs, 'fzf.vim')
     if executable("rg")
@@ -144,48 +186,9 @@ if has_key(plugs, 'fzf') && has_key(plugs, 'fzf.vim')
         let g:ackprg = 'rg --vimgrep'
     endif
     nmap ; :Buffers<CR>
-    nmap <leader>f :Files<CR>
-    nmap <leader>l :Lines<CR>
+    nmap <leader>sf :Files<CR>
+    nmap <leader>sl :Lines<CR>
 end
-
-""" Ultisnips
-if has_key(plugs, 'ultisnips')
-    let g:UltiSnipsExpandTrigger = "<c-j>"
-    let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-    let g:UltiSnipsJumpBackwardTrigger = "<c-j>"
-end
-
-""" ClangFormat
-if has_key(plugs, 'vim-clang-format')
-    let g:clang_format#command = "clang-format"
-    let g:clang_format#style_options = {
-                \ "IndentWidth" : 2,
-                \ "AllowShortIfStatementsOnASingleLine" : "true",
-                \ "AlwaysBreakTemplateDeclarations" : "true",
-                \ "Standard" : "C++11"}
-end
-
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
-
-    " refer to doc to add more commands
-endfunction
-
-augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
 
 """ vim-auto-save
 """ Autosave when doing normal mode changes, exiting insert mode, and moving
