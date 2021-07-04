@@ -44,6 +44,7 @@ call plug#end()
 
 " Configuration
 let mapleader = ","
+let maplocalleader = ","
 
 "" User interface
 syntax enable
@@ -180,6 +181,10 @@ if has_key(plugs, 'fzf') && has_key(plugs, 'fzf.vim')
     nmap <leader>sf :Files<CR>
     nmap <leader>sl :Lines<CR>
 end
+
+" Conjure
+let g:aniseed#env = v:true
+let g:conjure#client#fennel#aniseed#aniseed_module_prefix = "aniseed."
 
 """ vim-auto-save
 """ Autosave when doing normal mode changes, exiting insert mode, and moving
