@@ -110,3 +110,5 @@ SAVEHIST=1000000000
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
