@@ -4,7 +4,7 @@ set -x
 
 # Install dependencies
 sudo apt update
-sudo apt install git curl wget build-essential python3 lua5.3 snapd tmux fuse libfuse2 python3-pip ripgrep sakura
+sudo apt install git curl wget build-essential python3 lua5.3 snapd tmux fuse libfuse2 python3-pip ripgrep sakura stow
 
 # Install NeoVim
 if command -v vim &> /dev/null; then
@@ -43,7 +43,6 @@ sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 100
 
 # Set up files
 stow vim tmux zsh
-mkdir -p ~/.config/nvim && ln -s ~/.vimrc ~/.config/nvim/init.vim
 
 # Install NeoVim plugins
 vim +PlugInstall
