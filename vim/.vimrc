@@ -20,6 +20,7 @@ Plug 'esneider/vim-trailing'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'liuchengxu/vim-better-default'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mcchrish/nnn.vim'
 Plug 'michaeljsmith/vim-indent-object'
