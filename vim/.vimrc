@@ -81,7 +81,7 @@ set autoindent smartindent
 "" Do not indent when unmatched parenthesis on previous line.
 set cino+=(0
 "" Set clipboard
-set clipboard+=unnamedplus
+set clipboard+=unnamed,unnamedplus
 "" suppress the annoying 'match x of y',
 "" 'The only match' and 'Pattern not found' messages
 set shortmess+=c
