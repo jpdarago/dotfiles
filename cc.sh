@@ -2,6 +2,7 @@
 
 # Installation for C++ development tools
 set -euo pipefail
+set -x
 
 sudo apt install clang-format
 
