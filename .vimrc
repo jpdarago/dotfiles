@@ -13,7 +13,6 @@ endif
 "" Vim Plug and plugins
 call plug#begin('~/.vim/plugged')
 Plug 'Lokaltog/vim-easymotion'
-Plug 'Quramy/tsuquyomi'
 Plug 'SirVer/ultisnips'
 Plug 'dense-analysis/ale'
 Plug 'esneider/vim-trailing'
@@ -29,14 +28,10 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'rhysd/vim-clang-format'
-Plug 'rust-lang/rust.vim'
-Plug 'ryanolsonx/vim-lsp-typescript'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tweekmonster/startuptime.vim'
 Plug 'z0mbix/vim-shfmt'
 call plug#end()
 
@@ -146,8 +141,6 @@ if has_key(plugs, 'fzf') && has_key(plugs, 'fzf.vim')
         set grepprg=rg
         let g:ackprg = 'rg --vimgrep'
     endif
-    let g:fzf_layout = { 'down': '~10%' }
-
     nmap ; :Buffers<CR>
     nmap <leader>f :Files<CR>
     nmap <leader>l :Lines<CR>
@@ -168,20 +161,6 @@ if has_key(plugs, 'vim-clang-format')
                 \ "AllowShortIfStatementsOnASingleLine" : "true",
                 \ "AlwaysBreakTemplateDeclarations" : "true",
                 \ "Standard" : "C++11"}
-end
-
-""" vim-lsp
-if executable('clangd') && has_key(plugs, 'vim-lsp')
-    augroup lsp_clangd
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'clangd',
-                    \ 'cmd': {server_info->['clangd']},
-                    \ 'whitelist': ['c', 'cpp'],
-                    \ })
-        autocmd FileType c setlocal omnifunc=lsp#complete
-        autocmd FileType cpp setlocal omnifunc=lsp#complete
-    augroup end
 end
 
 function! s:on_lsp_buffer_enabled() abort
@@ -205,20 +184,6 @@ augroup lsp_install
     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
-
-"" Typescript
-if executable('prettier')
-    autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
-end
-
-"" Rust
-if executable('rls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
-        \ 'whitelist': ['rust'],
-        \ })
-endif
 
 """ Turn on plugins.
 filetype plugin indent on
