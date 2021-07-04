@@ -14,6 +14,7 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug '907th/vim-auto-save'
 Plug 'Lokaltog/vim-easymotion'
+Plug 'Olical/aniseed', { 'tag': 'v3.19.0' }
 Plug 'Olical/conjure', { 'tag': 'v4.3.1' }
 Plug 'chaoren/vim-wordmotion'
 Plug 'esneider/vim-trailing'
@@ -100,11 +101,8 @@ set magic
 set wildignore=.svn,.git,*.o,*~,*.swp,*.pyc,*.class,*.dSYM
 "" Search lowercase words, except if the search has uppercase letters.
 set ignorecase smartcase
-
-"" Show incremental edits (NeoVim only)
-if has('nvim')
-    set inccommand=nosplit
-end
+"" Show incremental edits
+set inccommand=nosplit
 
 "" Backups
 if exists("&backupdir")
@@ -130,17 +128,6 @@ if has('persistent_undo')
 endif
 
 "" Commands and macros
-
-""" Copy current filename.
-nnoremap <C-f> :let @* = expand("%")<CR>
-
-"" Autocommands
-
-""" Restore cursor position on reopening a file.
-autocmd BufReadPost *
-  \ if line("'\"") > 1 && line("'\"") <= line("$") |
-  \   exe "normal! g`\"" |
-  \ endif
 
 "" Plugin configuration
 
