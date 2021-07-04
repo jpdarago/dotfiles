@@ -12,26 +12,28 @@ endif
 
 "" Vim Plug and plugins
 call plug#begin('~/.vim/plugged')
+Plug '907th/vim-auto-save'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'SirVer/ultisnips'
+Plug 'chaoren/vim-wordmotion'
 Plug 'dense-analysis/ale'
 Plug 'esneider/vim-trailing'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'kana/vim-operator-user'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mcchrish/nnn.vim'
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'nanotech/jellybeans.vim'
-Plug 'neovim/node-host', { 'do': 'npm install' }
+Plug 'neoclide/coc-snippets'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/vim-lsp'
 Plug 'scrooloose/nerdcommenter'
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'wellle/targets.vim'
 Plug 'z0mbix/vim-shfmt'
 call plug#end()
 
@@ -184,6 +186,13 @@ augroup lsp_install
     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
+""" vim-auto-save
+""" Autosave when doing normal mode changes, exiting insert mode, and moving
+""" away from vim.
+let g:auto_save        = 1
+let g:auto_save_silent = 1
+let g:auto_save_events = ["InsertLeave", "TextChanged", "FocusLost"]
 
 """ Turn on plugins.
 filetype plugin indent on
