@@ -19,17 +19,8 @@ chmod u+x ~/bin/nvim
 sudo mv ~/bin/nvim /usr/local/bin/vim
 sudo pip3 install neovim
 
-# Install VimPlug
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 # Install NodeJS
-curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
-VERSION=node_16.x
-DISTRO="$(lsb_release -s -c)"
-echo "deb https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-echo "deb-src https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
-sudo apt-get update && sudo apt install -y nodejs
+curl -L https://git.io/n-install | vipe | bash
 
 # Install some NodeJS modules.
 sudo npm install -g prettier typescript typescript-language-server
