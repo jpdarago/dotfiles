@@ -32,6 +32,7 @@ Plug 'neoclide/coc-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'prabirshrestha/async.vim'
 Plug 'rhysd/vim-clang-format'
+Plug 'rhysd/vim-grammarous'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-repeat'
@@ -173,10 +174,6 @@ nmap <leader>f  <Plug>(coc-format-selected)
 
 """ FZF
 if has_key(plugs, 'fzf') && has_key(plugs, 'fzf.vim')
-    if executable("rg")
-        set grepprg=rg
-        let g:ackprg = 'rg --vimgrep'
-    endif
     nmap ; :Buffers<CR>
     nmap <leader>sf :Files<CR>
     nmap <leader>sl :Lines<CR>
@@ -192,6 +189,10 @@ let g:conjure#client#fennel#aniseed#aniseed_module_prefix = "aniseed."
 let g:auto_save        = 1
 let g:auto_save_silent = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged", "FocusLost"]
+
+""" Keep Markdown files at 80 characters.
+au BufRead,BufNewFile *.md setlocal textwidth=80
+
 
 """ Turn on plugins.
 filetype plugin indent on
