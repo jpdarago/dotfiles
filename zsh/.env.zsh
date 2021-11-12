@@ -14,3 +14,6 @@ SAVEHIST=1000000000
 
 # FZF options
 export FZF_DEFAULT_COMMAND='rg --files'
+
+# Path
+path=(~/bin $path)
