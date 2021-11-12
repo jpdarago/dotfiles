@@ -1,5 +1,4 @@
 #!/bin/bash
-set -euo pipefail
 set -x
 
 # Install dependencies
@@ -13,13 +12,15 @@ sudo apt install -y \
 stow tmux sakura
 
 # Install Meslo fonts.
-if ! fc-list | grep -q 'Meslo LG S'; then
+if fc-list | grep -q Meslo; then
+  echo "Meslo installed.."
+else
   wget -O /tmp/Meslo.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
   unzip /tmp/Meslo.zip -d ~/.fonts
   fc-cache -fv
 fi
 
-if [ "$TERM" != "screen-256color" ]; then
+if [ "$TERM" != "screen-256color" ] && [ "$TERM" != "xterm-256color"]; then
     sudo update-alternatives --set x-terminal-emulator /usr/bin/sakura
     echo "Please reopen terminal and run under tmux"
     exit 1
@@ -27,7 +28,7 @@ fi
 
 # Install ZSH and Powerlevel10k
 if [ ! -e ~/.p10k.zsh ]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh-bin/master/install)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
   exec zsh
   p10k configure
 fi
@@ -48,8 +49,8 @@ if [ ! -e /usr/local/bin/vim ]; then
 fi
 
 # Install NodeJS
-curl -L https://git.io/n-install | vipe | bash
-~/n/bin/n
+curl -fsSL https://deb.nodesource.com/setup_17.x | vipe | sudo -E bash -
+sudo apt install -y nodejs
 
 # Install some NodeJS modules.
 npm install -g prettier typescript typescript-language-server
