@@ -13,6 +13,14 @@
           "snippetSupport": true
          }
        }
+    },
+    "rescript": {
+        "enable": true,
+        "module": "~/.vim/plugged/vim-rescript/server/out/server.js",
+        "args": ["--node-ipc"],
+        "filetypes": ["rescript"],
+        "rootPatterns": ["bsconfig.json"]
     }
-  }
+  },
+  "coc.preferences.formatOnSaveFiletypes": ["css", "html", "markdown", "rust", "rescript"]
 }

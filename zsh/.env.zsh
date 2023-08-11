@@ -17,3 +17,5 @@ export FZF_DEFAULT_COMMAND='rg --files'
 
 # Path
 path=(~/bin $path)
+
+. "$HOME/.cargo/env"

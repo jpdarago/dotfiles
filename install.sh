@@ -6,7 +6,7 @@ sudo apt update -y
 sudo apt install -y \
     git curl wget build-essential python3 lua5.3 \
     tmux fuse libfuse2 python3-pip ripgrep sakura stow \
-    nnn moreutils
+    moreutils xclip
 
 # Ensure Tmux and Sakura are working properly.
 stow tmux sakura
