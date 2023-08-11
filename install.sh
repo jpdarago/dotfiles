@@ -22,6 +22,8 @@ fi
 
 sudo update-alternatives --set x-terminal-emulator /usr/bin/sakura
 
+stow zsh
+
 if [ ! -e ~/.fzf ]; then
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install
@@ -35,8 +37,6 @@ if [ ! -e ~/.p10k.zsh ]; then
 fi
 
 chsh -s $(which zsh)
-
-stow zsh
 
 # Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o /tmp/rustup.sh
@@ -56,7 +56,7 @@ if [ ! -e /usr/local/bin/vim ]; then
 fi
 
 # Install NodeJS
-curl -fsSL https://deb.nodesource.com/setup_current.x | vipe | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
 sudo apt install -y nodejs
 
 # Install some NodeJS modules.
