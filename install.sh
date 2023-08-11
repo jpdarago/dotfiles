@@ -6,7 +6,7 @@ sudo apt update -y
 sudo apt install -y \
     git curl wget build-essential python3 lua5.3 \
     tmux fuse libfuse2 python3-pip ripgrep sakura stow \
-    moreutils xclip python3-pip
+    moreutils xclip python3-pip zsh
 
 # Ensure Tmux and Sakura are working properly.
 stow tmux sakura
@@ -37,6 +37,8 @@ if [ ! -e ~/.p10k.zsh ]; then
   echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 fi
 
+chsh -s $(which zsh)
+
 stow zsh
 
 # Install Rust
@@ -57,7 +59,7 @@ if [ ! -e /usr/local/bin/vim ]; then
 fi
 
 # Install NodeJS
-curl -fsSL https://deb.nodesource.com/setup_17.x | vipe | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_current.x | vipe | sudo -E bash -
 sudo apt install -y nodejs
 
 # Install some NodeJS modules.
