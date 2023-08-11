@@ -20,11 +20,7 @@ else
   fc-cache -fv
 fi
 
-if [ "$TERM" != "screen-256color" ] && [ "$TERM" != "xterm-256color"]; then
-    sudo update-alternatives --set x-terminal-emulator /usr/bin/sakura
-    echo "Please reopen terminal and run under tmux"
-    exit 1
-fi
+sudo update-alternatives --set x-terminal-emulator /usr/bin/sakura
 
 if [ ! -e ~/.fzf ]; then
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -34,7 +30,8 @@ fi
 # Install ZSH and Powerlevel10k
 if [ ! -e ~/.p10k.zsh ]; then
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-  echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/zsh-syntax-highlighting
+  git clone https://github.com/zsh-users/zsh-autosuggestions ~/zsh-autosuggestions
 fi
 
 chsh -s $(which zsh)
@@ -63,10 +60,12 @@ curl -fsSL https://deb.nodesource.com/setup_current.x | vipe | sudo -E bash -
 sudo apt install -y nodejs
 
 # Install some NodeJS modules.
-npm install -g prettier typescript typescript-language-server
+sudo npm install -g prettier typescript typescript-language-server
 
 # Set up files
 stow vim
 
 # Install NeoVim plugins
 vim +PlugInstall
+
+echo "Please logout, open Sakura"

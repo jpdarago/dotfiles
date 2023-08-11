@@ -1,4 +1,6 @@
 source ~/powerlevel10k/powerlevel10k.zsh-theme
+source ~/zsh-syntax-highlighting/zsh-syntax-hilighting.zsh
+source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # No world writable files please.
 umask o-w
