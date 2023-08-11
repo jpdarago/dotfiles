@@ -1,3 +1,5 @@
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
 # No world writable files please.
 umask o-w
 
@@ -17,3 +19,5 @@ export FZF_DEFAULT_COMMAND='rg --files'
 
 # Path
 path=(~/bin $path)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

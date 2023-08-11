@@ -6,14 +6,14 @@ sudo apt update -y
 sudo apt install -y \
     git curl wget build-essential python3 lua5.3 \
     tmux fuse libfuse2 python3-pip ripgrep sakura stow \
-    moreutils xclip
+    moreutils xclip python3-pip
 
 # Ensure Tmux and Sakura are working properly.
 stow tmux sakura
 
 # Install Meslo fonts.
 if fc-list | grep -q Meslo; then
-  echo "Meslo installed.."
+  echo "Meslo installed, skipping..."
 else
   wget -O /tmp/Meslo.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
   unzip /tmp/Meslo.zip -d ~/.fonts
@@ -26,14 +26,22 @@ if [ "$TERM" != "screen-256color" ] && [ "$TERM" != "xterm-256color"]; then
     exit 1
 fi
 
+if [ ! -e ~/.fzf ]; then
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
+fi
+
 # Install ZSH and Powerlevel10k
 if [ ! -e ~/.p10k.zsh ]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
-  exec zsh
-  p10k configure
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+  echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 fi
 
 stow zsh
+
+# Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o /tmp/rustup.sh
+bash /tmp/rustup.sh
 
 # Install NeoVim
 if [ ! -e /usr/local/bin/vim ]; then
@@ -41,7 +49,7 @@ if [ ! -e /usr/local/bin/vim ]; then
       sudo apt-get remove --auto-remove vim ￼vim-runtime vim-tiny
   fi
   curl -fLo ~/bin/nvim --create-dirs \
-  	  https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage
+  	  https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
   chmod u+x ~/bin/nvim
   sudo mv ~/bin/nvim /usr/local/bin/vim
   sudo pip3 install neovim
@@ -54,8 +62,6 @@ sudo apt install -y nodejs
 
 # Install some NodeJS modules.
 npm install -g prettier typescript typescript-language-server
-
-# Set up preferences
 
 # Set up files
 stow vim
