@@ -2,15 +2,6 @@ vim.cmd 'packadd packer.nvim'
 
 local packer = require 'packer'
 
-function map_key(mode, key, result)
-  vim.api.nvim_set_keymap(
-    mode,
-    key,
-    result,
-    {noremap = true, silent = true}
-  )
-end
-
 packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
@@ -79,8 +70,10 @@ packer.startup(function(use)
     call matchadd('ColorColumn', '\%81v', 100)
   ]]
 
-  map_key('', '<leader>f', ':lua require"telescope.builtin".find_files()<CR>')
-  map_key('', '<leader>s', ':lua require"telescope.builtin".live_grep()<CR>')
-  map_key('', '<leader>b', ':lua require"telescope.builtin".buffers()<CR>')
+  local telescope = require 'telescope.builtin'
+
+  vim.keymap.set('', '<leader>f', telescope.find_files)
+  vim.keymap.set('', '<leader>s', telescope.live_grep)
+  vim.keymap.set('', '<leader>b', telescope.buffers)
 end)
 
