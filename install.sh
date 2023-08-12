@@ -53,6 +53,13 @@ if [ ! -e /usr/local/bin/vim ]; then
   sudo mv ~/bin/nvim /usr/local/bin/vim
   sudo pip3 install neovim
   sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 100
+
+  # Install NeoVim plugins
+  git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+  	~/.local/share/nvim/site/pack/packer/start/packer.nvim
+  
+  # Set up files
+  stow vim
 fi
 
 # Install NodeJS
@@ -61,11 +68,5 @@ sudo apt install -y nodejs
 
 # Install some NodeJS modules.
 sudo npm install -g prettier typescript typescript-language-server
-
-# Set up files
-stow vim
-
-# Install NeoVim plugins
-vim +PlugInstall
 
 echo "Please logout, open Sakura"
