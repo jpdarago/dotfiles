@@ -58,8 +58,9 @@ if [ ! -e /usr/local/bin/vim ]; then
   git clone --depth 1 https://github.com/wbthomason/packer.nvim\
   	~/.local/share/nvim/site/pack/packer/start/packer.nvim
   
-  # Set up files
   stow vim
+
+  vim +PackerCompile +PackerInstall
 fi
 
 # Install NodeJS
